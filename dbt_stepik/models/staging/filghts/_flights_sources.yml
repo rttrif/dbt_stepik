@@ -1,0 +1,10 @@
+sources:
+  - name: demo_src
+    description: 'Данные из dwh_flight'
+    database: dwh_flight
+    schema: demo_src
+    tables:
+      - name: aircrafts
+        description: 'Модели самолетов'
+      - name: airports
+      - name: seats
