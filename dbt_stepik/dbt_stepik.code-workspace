@@ -8,6 +8,7 @@
 		}
 	],
 	"settings": {
-		"dbt.enableNewLineagePanel": true
+		"dbt.enableNewLineagePanel": true,
+		"dbt.perspectiveTheme": "Vintage"
 	}
 }
