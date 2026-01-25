@@ -9,6 +9,9 @@
 	],
 	"settings": {
 		"dbt.enableNewLineagePanel": true,
-		"dbt.perspectiveTheme": "Vintage"
+		"dbt.perspectiveTheme": "Vintage",
+		"cSpell.words": [
+			"olyast"
+		]
 	}
 }

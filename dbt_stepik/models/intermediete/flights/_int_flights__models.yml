@@ -1,0 +1,88 @@
+models:
+  - name: fct_bookings
+    description: Факты бронирований
+    docs:
+      show: true
+      node_color: red
+    latest_version: 1
+    versions:
+      - v: 1
+    config:
+      contract: {enforced: true}
+      meta: {owner: "yml_file_owner@gmail.com", contact_tg: olyast04, status: in_dev, my_meta: new}
+    columns:
+      - name: booking_hk
+        data_type: varchar(32)
+      - name: book_ref
+        description: Идентификатор бронирования
+        data_type: bpchar(8)
+        constraints:
+          - type: not_null
+        tests: [not_null, unique]
+      - name: book_date
+        data_type: timestamptz
+      - name: total_amount
+        data_type: numeric(10, 2)
+        constraints:
+          - type: check
+            expression: "total_amount > 0"
+        tests:
+          - not_null
+        meta:
+          owner: finance_team
+        quote: false
+
+  - name: fct_flights
+    description: Факты перелетов
+    columns:
+      - name: flight_id
+        data_type: int4
+      - name: flight_no
+        data_type: varchar(10)
+      - name: scheduled_departure
+        data_type: timestamptz
+      - name: scheduled_arrival
+        data_type: timestamptz
+      - name: departure_airport_id
+        data_type: bpchar(3)
+      - name: arrival_airport_id
+        data_type: bpchar(3)
+      - name: status
+        data_type: varchar(20)
+      - name: aircraft_id
+        data_type: bpchar(3)
+      - name: actual_departure
+        data_type: timestamptz
+      - name: actual_arrival
+        data_type: timestamptz
+    tests:
+      - dbt_utils.equal_rowcount:
+          compare_model: ref('stg_flights__flights')
+
+  - name: fct_ticket_flights
+    description: Факты перелетов по билетам - связь между билетами и рейсами с указанием класса обслуживания и стоимости
+    docs:
+      show: true
+      node_color: green
+    config:
+      meta: {owner: "trifonov@example.com"}
+    columns:
+      - name: ticket_no
+        description: Номер билета
+        data_type: bpchar(13)
+        constraints:
+          - type: not_null
+      - name: flight_id
+        description: Идентификатор рейса
+        data_type: int4
+        constraints:
+          - type: not_null
+      - name: fare_conditions
+        description: Класс обслуживания
+        data_type: varchar(10)
+      - name: amount
+        description: Стоимость перелета
+        data_type: numeric(10, 2)
+        constraints:
+          - type: check
+            expression: "amount > 0"
