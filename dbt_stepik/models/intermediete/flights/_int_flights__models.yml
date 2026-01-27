@@ -4,15 +4,9 @@ models:
     docs:
       show: true
       node_color: red
-    latest_version: 1
-    versions:
-      - v: 1
     config:
-      contract: {enforced: true}
       meta: {owner: "yml_file_owner@gmail.com", contact_tg: olyast04, status: in_dev, my_meta: new}
     columns:
-      - name: booking_hk
-        data_type: varchar(32)
       - name: book_ref
         description: Идентификатор бронирования
         data_type: bpchar(8)
@@ -64,24 +58,18 @@ models:
     docs:
       show: true
       node_color: green
-    config:
-      meta: {owner: "trifonov@example.com"}
+    meta:
+      owner: "trifonov@example.com"
     columns:
       - name: ticket_no
-        description: Номер билета
         data_type: bpchar(13)
         constraints:
           - type: not_null
       - name: flight_id
-        description: Идентификатор рейса
         data_type: int4
-        constraints:
-          - type: not_null
       - name: fare_conditions
-        description: Класс обслуживания
         data_type: varchar(10)
       - name: amount
-        description: Стоимость перелета
         data_type: numeric(10, 2)
         constraints:
           - type: check
