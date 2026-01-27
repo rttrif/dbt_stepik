@@ -1,0 +1,23 @@
+seeds:
+  - name: city_region
+    description: "A dictionary mapping cities to their respective regions."
+    columns:
+      - name: city
+        description: "The name of the city."
+      - name: region
+        description: "The region where the city is located."
+    config:
+      column_types:
+        city: varchar(50)
+        region: varchar(50)
+  - name: passenger_employee
+    description: "A dictionary indicating whether a passenger is an employee."
+    columns:
+      - name: passenger_id
+        description: "The unique identifier for the passenger."
+      - name: passenger_name
+        description: "The name of the passenger."
+    config:
+      column_types:
+        passenger_id: varchar(100)
+        passenger_name: varchar(100)
