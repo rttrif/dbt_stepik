@@ -3,18 +3,23 @@
 {{
    config(
        target_schema='snapshot',
-       unique_key= ['aircraft_code', 'model'],
+       unique_key='aircraft_code',
 
        strategy='check',
-       check_cols=['aircraft_code', 'model', 'seats'],
-       dbt_valid_to_current = "'9999-12-31'::date"
+       check_cols=['model', 'range'],
+       dbt_valid_to_current = "'9999-01-01'::date",
+
+       snapshot_meta_column_names={
+           "dbt_valid_from": "dbt_effective_date_from",
+           "dbt_valid_to": "dbt_effective_date_to"
+       }
    )
 }}
 
 select
     aircraft_code,
     model,
-    range
+    "range"
 from {{ ref('stg_flights__aircrafts') }}
 
 {% endsnapshot %}
