@@ -6,5 +6,6 @@
 
 select
     city,
-    region    
+    region,
+    updated_at    
 from {{ ref('city_region') }}
