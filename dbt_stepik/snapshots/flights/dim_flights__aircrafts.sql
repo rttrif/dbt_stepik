@@ -7,12 +7,7 @@
 
        strategy='check',
        check_cols=['model', 'range'],
-       dbt_valid_to_current = "'9999-01-01'::date",
-
-       snapshot_meta_column_names={
-           "dbt_valid_from": "dbt_effective_date_from",
-           "dbt_valid_to": "dbt_effective_date_to"
-       }
+       dbt_valid_to_current = "'9999-01-01'::date"
    )
 }}
 
